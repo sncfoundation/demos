@@ -1,0 +1,5 @@
+__pycache__/
+*.pyc
+shufik.png
+pixels.txt
+creds.json
