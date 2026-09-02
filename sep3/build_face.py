@@ -24,6 +24,7 @@ def main():
     json.dump({"banner": "И СНОВА ТРЕТЬЕ СЕНТЯБРЯ",
                "caption": "edit anything — the SheetsOperator reconciles it back",
                "banner2": "\U0001F525 ГОРЯТ КОСТРЫ РЯБИН \U0001F525",
+               "cell_px": 6,   # small cells: 3x resolution at ~the same footprint
                "w": W, "h": H, "grid": grid,
                "strip": strip, "strip_w": SW, "strip_h": SH}, open("sep3.json", "w"))
     print(f"wrote sep3.json ({W}x{H} face + {SW}x{SH} strip)")
