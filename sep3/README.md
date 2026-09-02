@@ -38,6 +38,20 @@ docker run -d --restart unless-stopped \
   sheets-operator:1 run --interval 10
 ```
 
+## What self-heals, and the one thing that needs a janitor
+
+The external controller reconciles everything the Sheets API exposes: cell **values**,
+**backgrounds**, **notes**, and embedded **charts**. Delete the face, recolor cells, paste a
+formula or an `=IMAGE()` in a cell, drop a chart — all reverted.
+
+The exception is a **floating image inserted over the cells** (Insert → Image → "Image over
+cells") or a **Drawing**. Sheets API v4 does not expose those objects at all, so no external
+controller can remove them. The only tool that can is Apps Script bound to the sheet. If you
+want the demo bulletproof against that too, add [`janitor.gs`](janitor.gs) to the managed
+sheet with a one-minute trigger — a dumb actuator that just removes over-cell images. The
+controller stays the operator; the janitor covers the one object class Google withholds from
+the API.
+
 ## How the face was made
 
 `build_face.py` downloads the freely-licensed [Wikimedia photo](https://commons.wikimedia.org/wiki/File:%D0%9C%D0%B8%D1%85%D0%B0%D0%B8%D0%BB_%D0%A8%D1%83%D1%84%D1%83%D1%82%D0%B8%D0%BD%D1%81%D0%BA%D0%B8%D0%B9_(03-09-2021)_(cropped).png)
