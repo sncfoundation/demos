@@ -6,7 +6,7 @@ import json, re, subprocess, urllib.request, os
 PHOTO = ("https://upload.wikimedia.org/wikipedia/commons/thumb/d/d4/"
          "%D0%9C%D0%B8%D1%85%D0%B0%D0%B8%D0%BB_%D0%A8%D1%83%D1%84%D1%83%D1%82%D0%B8%D0%BD%D1%81%D0%BA%D0%B8%D0%B9_"
          "%2803-09-2021%29_%28cropped%29.png/500px-thumbnail.png")  # taken 03-09-2021, fittingly
-WIDTH = 46   # cells across; height follows the photo's aspect
+WIDTH = 138  # cells across; ~3x detail
 def main():
     urllib.request.urlretrieve(PHOTO, "shufik.png")
     subprocess.run(["magick", "shufik.png", "-resize", f"{WIDTH}x", "-modulate", "106,118",
